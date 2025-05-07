@@ -7,7 +7,8 @@ Page({
     rewrittenContent: '',
     isRewriting: false,
     contentStyle: 'casual', // 默认休闲风格
-    contentLength: 'medium' // 默认适中长度
+    contentLength: 'medium', // 默认适中长度
+    rewriteCount: 0 // 记录重写次数
   },
 
   onLoad: function() {
@@ -38,6 +39,11 @@ Page({
       contentStyle: style
     })
     console.log('选择内容风格:', style)
+    
+    // 如果已经有改写内容，提示用户可以点击重新改写
+    if (this.data.rewrittenContent) {
+      this.showRewriteTip()
+    }
   },
 
   // 选择内容长度
@@ -47,6 +53,22 @@ Page({
       contentLength: length
     })
     console.log('选择内容长度:', length)
+    
+    // 如果已经有改写内容，提示用户可以点击重新改写
+    if (this.data.rewrittenContent) {
+      this.showRewriteTip()
+    }
+  },
+
+  // 显示重新改写提示
+  showRewriteTip() {
+    if (this.data.rewriteCount === 0) {
+      wx.showToast({
+        title: '点击"重新改写"应用新选项',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
 
   // 改写内容
@@ -69,8 +91,12 @@ Page({
       return
     }
 
+    // 更新重写计数
+    const newCount = this.data.rewriteCount + 1
+    
     this.setData({
-      isRewriting: true
+      isRewriting: true,
+      rewriteCount: newCount
     })
 
     wx.showLoading({
@@ -80,6 +106,7 @@ Page({
     console.log('开始改写内容:', this.data.video.content)
     console.log('内容风格:', this.data.contentStyle)
     console.log('内容长度:', this.data.contentLength)
+    console.log('重写次数:', newCount)
 
     // 准备用户提示
     let stylePrompt = ''
@@ -139,6 +166,21 @@ Page({
             rewrittenContent: res.data.content
           }, () => {
             console.log('改写内容已更新:', this.data.rewrittenContent)
+            
+            // 首次改写后的提示
+            if (newCount === 1) {
+              wx.showToast({
+                title: '改写成功！可修改选项后重新改写',
+                icon: 'none',
+                duration: 2000
+              })
+            } else {
+              wx.showToast({
+                title: '重新改写成功',
+                icon: 'success',
+                duration: 1500
+              })
+            }
           })
         } else {
           wx.showToast({

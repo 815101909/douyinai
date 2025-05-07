@@ -141,6 +141,9 @@ page {
 .video-list-header {
   margin-bottom: 16rpx; /* 减少底部外边距 */
   padding: 0 8rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .section-title {
@@ -149,9 +152,38 @@ page {
   color: #333;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.clear-btn {
+  font-size: 26rpx;
+  color: #ff2c55;
+  padding: 4rpx 12rpx;
+  background-color: #ffe8ec;
+  border-radius: 8rpx;
+}
+
 .video-list {
   width: 100%;
   box-sizing: border-box;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 60rpx 0;
+  margin: 20rpx 0;
+  border: 1rpx dashed #ddd;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
 }
 
 .video-cards-wrapper {
@@ -195,18 +227,22 @@ page {
   padding: 16rpx;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .stat-item {
   display: flex;
   align-items: center;
-  margin-right: 24rpx;
+  margin-right: 10rpx;
   color: #fff;
+  font-size: 22rpx;
 }
 
 .stat-text {
   margin-left: 4rpx;
-  font-size: 24rpx;
+  font-size: 22rpx;
+  white-space: nowrap;
 }
 
 .video-info {
@@ -249,6 +285,14 @@ page {
   line-height: 1;
   text-align: center;
   margin: 0 auto; /* 确保居中 */
+  border: 2rpx solid #fff; /* 添加白色边框使按钮更明显 */
+  box-shadow: 0 2rpx 8rpx rgba(255, 44, 85, 0.3); /* 添加阴影增强立体感 */
+  transition: all 0.2s ease; /* 添加过渡效果 */
+}
+
+.rewrite-btn:active {
+  transform: scale(0.96); /* 添加按压效果 */
+  background-color: #e62548; /* 稍深的背景色 */
 }
 
 .rewrite-btn .icon-edit {

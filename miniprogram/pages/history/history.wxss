@@ -115,15 +115,13 @@ page {
   margin-bottom: 4rpx;
 }
 
-.stat-icon {
-  width: 24rpx;
-  height: 24rpx;
-  margin-right: 4rpx;
-}
-
-.stat-text {
+.stat-badge {
   font-size: 20rpx;
   color: #fff;
+  background-color: rgba(255, 44, 85, 0.8);
+  border-radius: 4rpx;
+  padding: 2rpx 8rpx;
+  margin-bottom: 4rpx;
 }
 
 /* 历史记录文本内容 */
@@ -208,17 +206,31 @@ page {
   min-width: 100rpx;
   flex: 0 1 auto; /* 允许按钮自适应宽度 */
   margin-bottom: 8rpx; /* 在按钮换行时提供间距 */
+  transition: all 0.2s ease; /* 添加过渡效果 */
 }
 
 .copy-btn {
   color: #ff2c55;
-  border: 1rpx solid #ff2c55;
+  border: 2rpx solid #ff2c55;
   background-color: #fff;
+  box-shadow: 0 2rpx 6rpx rgba(255, 44, 85, 0.1);
+}
+
+.copy-btn:active {
+  transform: scale(0.96);
+  background-color: #fff5f7;
 }
 
 .view-btn {
   color: #fff;
   background-color: #ff2c55;
+  border: 2rpx solid #fff;
+  box-shadow: 0 2rpx 8rpx rgba(255, 44, 85, 0.3);
+}
+
+.view-btn:active {
+  transform: scale(0.96);
+  background-color: #e62548;
 }
 
 .btn-icon-small {
@@ -271,4 +283,32 @@ page {
 .tab-text {
   font-size: 24rpx;
   margin-top: 4rpx;
+}
+
+/* 空记录提示样式 */
+.empty-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  width: 120rpx;
+  height: 120rpx;
+  opacity: 0.5;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 12rpx;
+}
+
+.empty-tip {
+  font-size: 26rpx;
+  color: #999;
 } 

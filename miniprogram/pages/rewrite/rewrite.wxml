@@ -52,15 +52,22 @@
     </view>
 
     <view class="button-group">
-      <button class="primary-btn" bindtap="rewriteContent" loading="{{isRewriting}}" disabled="{{isRewriting || !video.content}}">
-        {{isRewriting ? '改写中...' : '开始AI改写'}}
-      </button>
-      <button class="secondary-btn" bindtap="copyContent" disabled="{{!rewrittenContent}}">
-        复制内容
-      </button>
-      <button class="secondary-btn" bindtap="saveToHistory" disabled="{{!rewrittenContent}}">
-        保存历史
-      </button>
+      <block wx:if="{{!rewrittenContent}}">
+        <button class="primary-btn" bindtap="rewriteContent" loading="{{isRewriting}}" disabled="{{isRewriting || !video.content}}">
+          {{isRewriting ? '改写中...' : '开始AI改写'}}
+        </button>
+      </block>
+      <block wx:else>
+        <button class="primary-btn" bindtap="rewriteContent" loading="{{isRewriting}}" disabled="{{isRewriting || !video.content}}">
+          {{isRewriting ? '改写中...' : '重新改写'}}
+        </button>
+        <button class="secondary-btn" bindtap="copyContent">
+          复制内容
+        </button>
+        <button class="secondary-btn" bindtap="saveToHistory">
+          保存历史
+        </button>
+      </block>
     </view>
   </block>
   <view wx:else class="error-message">

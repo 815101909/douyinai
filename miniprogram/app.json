@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/history/history",
     "pages/rewrite/rewrite",
+    "pages/history-detail/history-detail",
     "pages/logs/logs"
   ],
   "window": {

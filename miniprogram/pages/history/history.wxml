@@ -11,6 +11,13 @@
     
     <!-- 历史记录列表 -->
     <view class="history-list-container">
+      <!-- 空记录提示 -->
+      <view wx:if="{{historyItems.length === 0}}" class="empty-history">
+        <image class="empty-icon" src="/images/历史.png" mode="aspectFit"></image>
+        <text class="empty-text">暂无历史记录</text>
+        <text class="empty-tip">保存AI改写的内容将显示在这里</text>
+      </view>
+      
       <!-- 记录项 -->
       <block wx:for="{{historyItems}}" wx:key="id">
         <view class="history-item">
@@ -18,15 +25,13 @@
             <!-- 添加视频封面 -->
             <view class="history-media">
               <image class="history-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
-              <!-- 封面上的统计信息 -->
+              <!-- 封面上的信息 -->
               <view class="cover-stats">
                 <view class="stat-item">
-                  <image class="stat-icon" src="/images/点赞.svg"></image>
-                  <text class="stat-text">{{item.likes}}</text>
+                  <text class="stat-badge">{{item.styleType}}</text>
                 </view>
                 <view class="stat-item">
-                  <image class="stat-icon" src="/images/播放.svg"></image>
-                  <text class="stat-text">{{item.views}}</text>
+                  <text class="stat-badge">{{item.lengthType}}</text>
                 </view>
               </view>
             </view>

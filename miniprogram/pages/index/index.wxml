@@ -40,8 +40,13 @@
       </view>
       
       <view class="video-list">
+        <!-- 当没有视频时显示提示信息 -->
+        <view wx:if="{{videos.length === 0}}" class="empty-state">
+          <text class="empty-text">请输入关键词搜索视频</text>
+        </view>
+        
         <!-- 使用inline样式展示多个卡片并排, 这里使用了9:16比例的封面图片 -->
-        <view class="video-cards-wrapper">
+        <view wx:else class="video-cards-wrapper">
           <block wx:for="{{videos}}" wx:key="id">
             <view class="video-card">
               <view class="video-cover-container">
@@ -54,6 +59,10 @@
                   <view class="stat-item">
                     <image class="stat-icon" src="/images/播放.svg"></image>
                     <text class="stat-text">{{item.views}}</text>
+                  </view>
+                  <view class="stat-item" wx:if="{{item.publishTime}}">
+                    <image class="stat-icon" src="/images/时间.svg"></image>
+                    <text class="stat-text">{{item.publishTime}}</text>
                   </view>
                 </view>
               </view>
