@@ -1,0 +1,361 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 页面容器 */
+.page-container {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 0; /* 确保顶部没有额外填充 */
+}
+
+/* 容器样式 */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 0; /* 移除顶部填充 */
+  padding-bottom: 220rpx; /* 增加底部填充高度 */
+}
+
+/* 头部样式 */
+.header {
+  padding: 5rpx 32rpx; /* 进一步减少顶部内边距 */
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-top: 0; /* 确保没有顶部外边距 */
+}
+
+.header-title {
+  font-size: 32rpx; /* 减小字体尺寸 */
+  font-weight: bold;
+  color: #333;
+  margin: 0; /* 确保没有外边距 */
+  padding: 5rpx 0; /* 添加少量上下内边距 */
+}
+
+/* 搜索区域样式 */
+.search-area {
+  padding: 20rpx 32rpx; /* 减少顶部和底部内边距 */
+  background-color: #f8f8f8;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-item {
+  margin-bottom: 16rpx; /* 减少底部外边距 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 4rpx; /* 减少底部外边距 */
+}
+
+.search-input {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background-color: #fff;
+  border: 1rpx solid #ddd;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.like-range {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx; /* 减少底部外边距 */
+  flex-wrap: wrap; /* 允许在小屏幕上换行 */
+  gap: 16rpx; /* 项目间间距 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.like-range-item {
+  width: calc(50% - 8rpx); /* 调整宽度，考虑间距 */
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 375px) {
+  .like-range {
+    flex-direction: column;
+  }
+  
+  .like-range-item {
+    width: 100%;
+  }
+}
+
+.search-btn {
+  width: 100%;
+  height: 80rpx; /* 减小搜索按钮高度 */
+  background-color: #ff2c55;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 44, 85, 0.2);
+  box-sizing: border-box;
+}
+
+.search-btn .icon-search {
+  margin-right: 10rpx;
+  font-size: 34rpx;
+}
+
+.search-btn-text {
+  font-weight: 500;
+}
+
+/* 视频列表区域 */
+.video-list-container {
+  padding: 16rpx 16rpx 100rpx 16rpx; /* 增加底部填充 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.video-list-header {
+  margin-bottom: 16rpx; /* 减少底部外边距 */
+  padding: 0 8rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.video-list {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.video-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.video-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 28rpx; /* 增加卡片底部间距 */
+  border: 1rpx solid #e0e0e0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  width: 48%; /* 在一行显示两个卡片，占据48%宽度，留出2%间距 */
+  box-sizing: border-box;
+}
+
+.video-cover-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 177.78%; /* 9:16 比例 (9/16 = 0.5625, 1/0.5625 = 1.7778, 1.7778 * 100 = 177.78%) */
+  box-sizing: border-box;
+}
+
+.video-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16rpx;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+  color: #fff;
+}
+
+.stat-text {
+  margin-left: 4rpx;
+  font-size: 24rpx;
+}
+
+.video-info {
+  padding: 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-title {
+  font-size: 24rpx;
+  font-weight: 500;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 16rpx;
+  height: 68rpx; /* 固定高度，保证一致性 */
+  width: 100%;
+}
+
+.rewrite-btn {
+  width: 65%; /* 显著减小按钮宽度，使其明显更短 */
+  max-width: 160rpx; /* 添加最大宽度限制 */
+  height: 60rpx;
+  background-color: #ff2c55;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 500;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 10rpx; /* 添加水平内边距，确保文字不会挤到边缘 */
+  line-height: 1;
+  text-align: center;
+  margin: 0 auto; /* 确保居中 */
+}
+
+.rewrite-btn .icon-edit {
+  vertical-align: middle;
+  margin-right: 8rpx;
+  position: relative;
+  top: -1rpx;
+}
+
+/* 底部空间，防止内容被底部导航栏遮挡 */
+.bottom-space {
+  height: 200rpx; /* 进一步增大底部空间高度 */
+  width: 100%;
+}
+
+/* 底部导航栏 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background-color: #fff;
+  display: flex;
+  border-top: 1rpx solid #f0f0f0;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+}
+
+.tab-item.active {
+  color: #ff2c55;
+}
+
+.tab-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 4rpx;
+}
+
+.tab-text {
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+
+/* 搜索按钮图标 */
+.btn-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+/* 视频统计图标 */
+.stat-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+/* 视频卡片图标样式调整 */
+.stat-item {
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+  color: #fff;
+}
+
+.stat-text {
+  margin-left: 4rpx;
+  font-size: 24rpx;
+}
+
+/* 底部导航栏图标 */
+.tab-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 4rpx;
+}
+
+/* 活跃状态的图标颜色 */
+.tab-item.active .tab-icon {
+  filter: hue-rotate(320deg) saturate(5);
+}
+
+/* 在页面级别重写图标尺寸 */
+.icon-heart, .icon-play {
+  font-size: 30rpx;
+}
+
+.icon-edit {
+  font-size: 28rpx;
+  margin-right: 6rpx;
+}
+
+.edit-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 6rpx;
+  vertical-align: middle;
+}

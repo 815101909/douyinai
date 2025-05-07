@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频发现页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #f8f8f8;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .safe-area {
+            padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+        .tab-bar {
+            height: 60px;
+            background-color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- 状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div class="text-sm font-medium">10:30</div>
+        <div class="flex space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 标题栏 -->
+    <div class="px-4 py-3 border-b border-gray-200">
+        <h1 class="text-xl font-bold text-center">抖音热点搜索</h1>
+    </div>
+    
+    <!-- 搜索区域 -->
+    <div class="p-4 bg-gray-50">
+        <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-700 mb-1">关键词</label>
+            <input type="text" placeholder="输入搜索关键词" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500">
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 mb-3">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">最小点赞量</label>
+                <input type="number" placeholder="1000" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">最大点赞量</label>
+                <input type="number" placeholder="1000000" class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500">
+            </div>
+        </div>
+        
+        <button class="w-full bg-red-500 text-white py-2.5 px-4 rounded-lg font-medium shadow-sm hover:bg-red-600 transition-colors">
+            <i class="fas fa-search mr-1"></i> 搜索视频
+        </button>
+    </div>
+    
+    <!-- 视频列表 -->
+    <div class="px-4 pt-4 pb-24">
+        <h2 class="text-lg font-semibold mb-3">搜索结果</h2>
+        
+        <!-- 视频卡片 1 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="relative pb-[56.25%]">
+                <img src="https://images.pexels.com/photos/4145365/pexels-photo-4145365.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="视频封面" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                    <div class="flex items-center text-white">
+                        <div class="mr-3">
+                            <i class="fas fa-heart mr-1"></i>
+                            <span>25.6万</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play mr-1"></i>
+                            <span>186.2万</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3">
+                <h3 class="font-medium line-clamp-2 mb-2">5个超级简单的家庭健身训练动作，每天10分钟告别拖延症，塑造完美身材！</h3>
+                <button class="w-full bg-red-500 text-white py-1.5 px-3 rounded font-medium text-sm hover:bg-red-600 transition-colors">
+                    <i class="fas fa-magic mr-1"></i> AI改写
+                </button>
+            </div>
+        </div>
+        
+        <!-- 视频卡片 2 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="relative pb-[56.25%]">
+                <img src="https://images.pexels.com/photos/5792851/pexels-photo-5792851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="视频封面" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                    <div class="flex items-center text-white">
+                        <div class="mr-3">
+                            <i class="fas fa-heart mr-1"></i>
+                            <span>13.2万</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play mr-1"></i>
+                            <span>96.5万</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3">
+                <h3 class="font-medium line-clamp-2 mb-2">超级省钱的厨房收纳技巧大公开！再也不怕东西太多放不下了！</h3>
+                <button class="w-full bg-red-500 text-white py-1.5 px-3 rounded font-medium text-sm hover:bg-red-600 transition-colors">
+                    <i class="fas fa-magic mr-1"></i> AI改写
+                </button>
+            </div>
+        </div>
+        
+        <!-- 视频卡片 3 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="relative pb-[56.25%]">
+                <img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="视频封面" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                    <div class="flex items-center text-white">
+                        <div class="mr-3">
+                            <i class="fas fa-heart mr-1"></i>
+                            <span>35.8万</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play mr-1"></i>
+                            <span>212.3万</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3">
+                <h3 class="font-medium line-clamp-2 mb-2">这个手机摄影技巧让你的照片秒变大片，朋友圈点赞暴涨！</h3>
+                <button class="w-full bg-red-500 text-white py-1.5 px-3 rounded font-medium text-sm hover:bg-red-600 transition-colors">
+                    <i class="fas fa-magic mr-1"></i> AI改写
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center px-2 safe-area">
+        <a href="search.html" class="flex flex-col items-center justify-center text-red-500 flex-1">
+            <i class="fas fa-compass text-xl"></i>
+            <span class="text-xs mt-1">视频发现</span>
+        </a>
+        <a href="history.html" class="flex flex-col items-center justify-center text-gray-500 flex-1">
+            <i class="fas fa-history text-xl"></i>
+            <span class="text-xs mt-1">历史记录</span>
+        </a>
+    </div>
+</body>
+</html> 

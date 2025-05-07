@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI改写页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #f8f8f8;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .safe-area {
+            padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+        .tab-bar {
+            height: 60px;
+            background-color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- 状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div class="text-sm font-medium">10:30</div>
+        <div class="flex space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <div class="px-4 py-3 border-b border-gray-200 flex items-center">
+        <a href="search.html" class="text-gray-500 mr-3">
+            <i class="fas fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-lg font-bold flex-1 text-center pr-6">AI改写</h1>
+    </div>
+    
+    <!-- 视频信息 -->
+    <div class="p-4 bg-gray-50">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <h2 class="font-semibold text-lg mb-2">5个超级简单的家庭健身训练动作，每天10分钟告别拖延症，塑造完美身材！</h2>
+            
+            <div class="flex items-center text-sm text-gray-500 mb-3">
+                <div class="mr-4">
+                    <i class="fas fa-heart text-red-500 mr-1"></i>
+                    <span>25.6万赞</span>
+                </div>
+                <div>
+                    <i class="fas fa-play text-gray-500 mr-1"></i>
+                    <span>186.2万播放</span>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-100 pt-3">
+                <h3 class="font-medium text-sm text-gray-500 mb-2">原始文案：</h3>
+                <p class="text-gray-800">
+                    大家好！今天给大家分享5个超级简单的居家健身动作，不需要任何器械，每天只需10分钟，坚持一个月你就能看到明显变化！第一个动作是改良版俯卧撑，对手臂和胸部有很好的锻炼效果；第二个是平板支撑，能强化你的核心肌群；第三个是深蹲跳，增强下肢力量；第四个是仰卧起坐变式；最后是高抬腿，能帮助你燃烧腹部脂肪。我已经坚持这套动作三个月了，效果超级棒！记得点赞关注，每天分享不同的健身小技巧！
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI改写结果 -->
+    <div class="px-4 pt-2 pb-24">
+        <div class="flex items-center justify-between mb-3">
+            <h3 class="font-semibold text-lg">AI改写结果</h3>
+            <button class="flex items-center text-red-500 text-sm">
+                <i class="fas fa-copy mr-1"></i> 复制
+            </button>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+            <div class="border-l-4 border-red-500 pl-3 mb-4">
+                <h4 class="font-medium text-base mb-1">标题改写：</h4>
+                <p class="text-gray-800">告别复杂健身！5个懒人居家运动秘籍，日投10分钟，30天塑造理想体态</p>
+            </div>
+            
+            <div class="border-l-4 border-red-500 pl-3">
+                <h4 class="font-medium text-base mb-1">文案改写：</h4>
+                <p class="text-gray-800">
+                    懒人变身运动达人的秘密来啦！今天为你带来5个零基础、零器械的居家训练动作，每天只占用你10分钟，一个月后绝对让你惊艳自己！
+                    <br><br>
+                    🔥动作一：初学者友好版俯卧撑，精准雕刻手臂线条与胸肌
+                    <br>
+                    🔥动作二：超静态平板支撑，激活全身核心肌群
+                    <br>
+                    🔥动作三：深蹲跳跃组合，瞬间提升下肢力量与爆发力
+                    <br>
+                    🔥动作四：进阶版仰卧起坐，直击腹肌薄弱区
+                    <br>
+                    🔥动作五：高效高抬腿，定向燃烧顽固腹部脂肪
+                    <br><br>
+                    这套动作我已经亲测三个月，效果简直不要太明显！不信？现在就开始，30天后对比照片见证奇迹！点赞关注解锁更多懒人变身技巧！👇
+                </p>
+            </div>
+        </div>
+        
+        <div class="mt-4 flex space-x-2">
+            <button class="flex-1 bg-red-500 text-white py-2.5 px-4 rounded-lg font-medium shadow-sm hover:bg-red-600 transition-colors">
+                <i class="fas fa-sync-alt mr-1"></i> 重新生成
+            </button>
+            <button class="flex-1 bg-green-500 text-white py-2.5 px-4 rounded-lg font-medium shadow-sm hover:bg-green-600 transition-colors">
+                <i class="fas fa-save mr-1"></i> 保存记录
+            </button>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center px-2 safe-area">
+        <a href="search.html" class="flex flex-col items-center justify-center text-gray-500 flex-1">
+            <i class="fas fa-compass text-xl"></i>
+            <span class="text-xs mt-1">视频发现</span>
+        </a>
+        <a href="history.html" class="flex flex-col items-center justify-center text-gray-500 flex-1">
+            <i class="fas fa-history text-xl"></i>
+            <span class="text-xs mt-1">历史记录</span>
+        </a>
+    </div>
+</body>
+</html> 

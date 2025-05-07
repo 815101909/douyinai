@@ -1,0 +1,75 @@
+<!--index.wxml-->
+<!-- 抖音热点搜索页面 -->
+<scroll-view scroll-y="true" class="page-container">
+  <view class="container">
+    <!-- 状态栏 (微信小程序会自动处理) -->
+    
+    <!-- 标题栏 -->
+    <view class="header">
+      <text class="header-title">抖音热点搜索</text>
+    </view>
+    
+    <!-- 搜索区域 -->
+    <view class="search-area">
+      <view class="search-item">
+        <text class="search-label">关键词</text>
+        <input type="text" placeholder="输入搜索关键词" bindinput="onKeywordInput" class="search-input" />
+      </view>
+      
+      <view class="like-range">
+        <view class="like-range-item">
+          <text class="search-label">最小点赞量</text>
+          <input type="number" placeholder="100" bindinput="onMinLikesInput" class="search-input" />
+        </view>
+        <view class="like-range-item">
+          <text class="search-label">最大点赞量</text>
+          <input type="number" placeholder="1000000" bindinput="onMaxLikesInput" class="search-input" />
+        </view>
+      </view>
+      
+      <button class="search-btn" bindtap="searchVideos">
+        <image class="btn-icon" src="/images/搜索.svg"></image>
+        <text class="search-btn-text">搜索视频</text>
+      </button>
+    </view>
+    
+    <!-- 视频列表 -->
+    <view class="video-list-container">
+      <view class="video-list-header">
+        <text class="section-title">推荐视频</text>
+      </view>
+      
+      <view class="video-list">
+        <!-- 使用inline样式展示多个卡片并排, 这里使用了9:16比例的封面图片 -->
+        <view class="video-cards-wrapper">
+          <block wx:for="{{videos}}" wx:key="id">
+            <view class="video-card">
+              <view class="video-cover-container">
+                <image src="{{item.coverUrl}}" mode="aspectFill" class="video-cover" />
+                <view class="video-stats">
+                  <view class="stat-item">
+                    <image class="stat-icon" src="/images/点赞.svg"></image>
+                    <text class="stat-text">{{item.likes}}</text>
+                  </view>
+                  <view class="stat-item">
+                    <image class="stat-icon" src="/images/播放.svg"></image>
+                    <text class="stat-text">{{item.views}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="video-info">
+                <text class="video-title">{{item.title}}</text>
+                <button class="rewrite-btn" bindtap="goToRewrite" data-video="{{item}}">
+                  <image class="edit-icon" src="/images/签字.svg"></image> AI改写
+                </button>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 底部空间，防止内容被底部导航栏遮挡 -->
+    <view class="bottom-space"></view>
+  </view>
+</scroll-view>

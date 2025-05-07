@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史记录页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #f8f8f8;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .safe-area {
+            padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+        .tab-bar {
+            height: 60px;
+            background-color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- 状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div class="text-sm font-medium">10:30</div>
+        <div class="flex space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 标题栏 -->
+    <div class="px-4 py-3 border-b border-gray-200">
+        <h1 class="text-xl font-bold text-center">历史记录</h1>
+    </div>
+    
+    <!-- 历史记录列表 -->
+    <div class="px-4 pt-4 pb-24">
+        <!-- 记录项 1 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold line-clamp-1 flex-1 mr-2">告别复杂健身！5个懒人居家运动秘籍，日投10分钟，30天塑造理想体态</h3>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">今天 12:30</span>
+                </div>
+                
+                <p class="text-gray-600 text-sm line-clamp-2 mb-3">
+                    懒人变身运动达人的秘密来啦！今天为你带来5个零基础、零器械的居家训练动作，每天只占用你10分钟，一个月后绝对让你惊艳自己！
+                </p>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center text-xs text-gray-500">
+                        <i class="fas fa-heart text-red-500 mr-1"></i>
+                        <span class="mr-3">25.6万赞</span>
+                        <i class="fas fa-play text-gray-500 mr-1"></i>
+                        <span>186.2万播放</span>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button class="text-red-500 border border-red-500 rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-copy mr-1"></i> 复制
+                        </button>
+                        <a href="rewrite.html" class="bg-red-500 text-white rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-eye mr-1"></i> 查看
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 记录项 2 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold line-clamp-1 flex-1 mr-2">厨房空间翻倍！7个收纳妙招让小厨房变身收纳天堂</h3>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">昨天 18:15</span>
+                </div>
+                
+                <p class="text-gray-600 text-sm line-clamp-2 mb-3">
+                    小厨房也能有大容量！这7个超实用收纳技巧让你的厨房空间立刻扩大一倍，再也不用担心东西放不下了！每个技巧都经过实测，成本不到50元就能搞定！
+                </p>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center text-xs text-gray-500">
+                        <i class="fas fa-heart text-red-500 mr-1"></i>
+                        <span class="mr-3">13.2万赞</span>
+                        <i class="fas fa-play text-gray-500 mr-1"></i>
+                        <span>96.5万播放</span>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button class="text-red-500 border border-red-500 rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-copy mr-1"></i> 复制
+                        </button>
+                        <button class="bg-red-500 text-white rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-eye mr-1"></i> 查看
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 记录项 3 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold line-clamp-1 flex-1 mr-2">手机摄影进阶秘诀：3步让你的照片媲美专业相机，朋友圈点赞999+</h3>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">前天 09:45</span>
+                </div>
+                
+                <p class="text-gray-600 text-sm line-clamp-2 mb-3">
+                    不用花钱买昂贵设备，用这3个简单技巧，立刻提升你的手机摄影水平！第一招构图法则让照片更专业，第二招光线运用创造氛围感，第三招后期调色让照片独具风格。
+                </p>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center text-xs text-gray-500">
+                        <i class="fas fa-heart text-red-500 mr-1"></i>
+                        <span class="mr-3">35.8万赞</span>
+                        <i class="fas fa-play text-gray-500 mr-1"></i>
+                        <span>212.3万播放</span>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button class="text-red-500 border border-red-500 rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-copy mr-1"></i> 复制
+                        </button>
+                        <button class="bg-red-500 text-white rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-eye mr-1"></i> 查看
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 记录项 4 -->
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-4 overflow-hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold line-clamp-1 flex-1 mr-2">一天学会Excel高级函数，办公效率提升200%！</h3>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">5月15日</span>
+                </div>
+                
+                <p class="text-gray-600 text-sm line-clamp-2 mb-3">
+                    这5个Excel函数让你从职场小白变身数据分析高手！VLOOKUP让数据查询不再困难，SUMIFS让条件汇总更精准，IFERROR让错误处理更优雅，透视表让数据展示更直观！
+                </p>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center text-xs text-gray-500">
+                        <i class="fas fa-heart text-red-500 mr-1"></i>
+                        <span class="mr-3">18.7万赞</span>
+                        <i class="fas fa-play text-gray-500 mr-1"></i>
+                        <span>127.5万播放</span>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button class="text-red-500 border border-red-500 rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-copy mr-1"></i> 复制
+                        </button>
+                        <button class="bg-red-500 text-white rounded px-2 py-1 text-xs flex items-center">
+                            <i class="fas fa-eye mr-1"></i> 查看
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center px-2 safe-area">
+        <a href="search.html" class="flex flex-col items-center justify-center text-gray-500 flex-1">
+            <i class="fas fa-compass text-xl"></i>
+            <span class="text-xs mt-1">视频发现</span>
+        </a>
+        <a href="history.html" class="flex flex-col items-center justify-center text-red-500 flex-1">
+            <i class="fas fa-history text-xl"></i>
+            <span class="text-xs mt-1">历史记录</span>
+        </a>
+    </div>
+</body>
+</html> 
