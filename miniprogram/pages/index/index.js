@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   data: {
     keyword: '',
-    minLikes: 1000,
+    minLikes: 100,
     maxLikes: 1000000,
     activeTab: 'discover',
     videos: [
@@ -128,7 +128,8 @@ Page({
               authorName: item.nick_name,
               authorAvatar: item.avatar_url,
               duration: this.formatDuration(item.item_duration),
-              publishTime: this.formatPublishTime(item.publish_time)
+              publishTime: this.formatPublishTime(item.publish_time),
+              content: item.item_desc || ''
             }
           })
           
@@ -197,7 +198,17 @@ Page({
   // 跳转到AI改写页面
   goToRewrite(e) {
     const video = e.currentTarget.dataset.video
+    console.log('准备改写的视频数据:', video)
     
+    if (!video || !video.videoUrl) {
+      wx.showToast({
+        title: '视频数据不完整',
+        icon: 'none',
+        duration: 1500
+      })
+      return
+    }
+
     // 先获取视频内容
     wx.showLoading({
       title: '获取视频内容...',
@@ -211,17 +222,30 @@ Page({
       },
       success: (res) => {
         wx.hideLoading()
+        console.log('获取视频内容响应:', res.data)
         
         if (res.data && res.data.success) {
           // 添加内容到视频对象
-          video.content = res.data.content
+          const videoWithContent = {
+            ...video,
+            content: res.data.content
+          }
+          console.log('准备传递的视频数据:', videoWithContent)
           
           // 导航到改写页面
           wx.navigateTo({
             url: '../rewrite/rewrite',
             success: (result) => {
               // 传递视频数据给改写页面
-              result.eventChannel.emit('acceptDataFromOpenerPage', { video: video })
+              result.eventChannel.emit('acceptDataFromOpenerPage', { video: videoWithContent })
+            },
+            fail: (err) => {
+              console.error('页面跳转失败:', err)
+              wx.showToast({
+                title: '页面跳转失败',
+                icon: 'none',
+                duration: 1500
+              })
             }
           })
         } else {

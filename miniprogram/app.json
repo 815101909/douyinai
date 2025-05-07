@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/history/history",
+    "pages/rewrite/rewrite",
     "pages/logs/logs"
   ],
   "window": {

@@ -19,7 +19,8 @@ App({
     // apiBaseUrl: 'https://yourprodserver.com', // 生产环境API地址
     apiEndpoints: {
       searchVideos: '/api/search-videos',
-      videoContent: '/api/video-content'
+      videoContent: '/api/video-content',
+      rewriteContent: '/api/rewrite-content'
     }
   }
 })

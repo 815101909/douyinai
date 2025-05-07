@@ -1,0 +1,66 @@
+<!-- pages/rewrite/rewrite.wxml -->
+<view class="container">
+  <block wx:if="{{video}}">
+    <view class="video-info">
+      <image class="video-cover" src="{{video.coverUrl}}" mode="aspectFill"></image>
+      <view class="video-details">
+        <text class="video-title">{{video.title}}</text>
+        <view class="video-stats">
+          <text class="stat">{{video.likes}} 赞</text>
+          <text class="stat">{{video.views}} 播放</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="content-section">
+      <view class="section-title">原始内容</view>
+      <view class="content-box original">
+        <text wx:if="{{video.content}}">{{video.content}}</text>
+        <text wx:else class="placeholder">暂无内容</text>
+      </view>
+    </view>
+
+    <view class="options-section">
+      <view class="section-title">改写设置</view>
+      
+      <view class="option-group">
+        <view class="option-label">内容风格</view>
+        <view class="option-items">
+          <view class="option-item {{contentStyle === 'formal' ? 'selected' : ''}}" bindtap="selectContentStyle" data-style="formal">正式</view>
+          <view class="option-item {{contentStyle === 'casual' ? 'selected' : ''}}" bindtap="selectContentStyle" data-style="casual">休闲</view>
+          <view class="option-item {{contentStyle === 'humorous' ? 'selected' : ''}}" bindtap="selectContentStyle" data-style="humorous">幽默</view>
+          <view class="option-item {{contentStyle === 'professional' ? 'selected' : ''}}" bindtap="selectContentStyle" data-style="professional">专业</view>
+        </view>
+      </view>
+      
+      <view class="option-group">
+        <view class="option-label">内容长度</view>
+        <view class="option-items">
+          <view class="option-item {{contentLength === 'short' ? 'selected' : ''}}" bindtap="selectContentLength" data-length="short">简短</view>
+          <view class="option-item {{contentLength === 'medium' ? 'selected' : ''}}" bindtap="selectContentLength" data-length="medium">适中</view>
+          <view class="option-item {{contentLength === 'long' ? 'selected' : ''}}" bindtap="selectContentLength" data-length="long">详细</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="content-section">
+      <view class="section-title">AI改写</view>
+      <view class="content-box rewritten">
+        <text wx:if="{{!rewrittenContent}}">点击下方按钮开始AI改写</text>
+        <text wx:else>{{rewrittenContent}}</text>
+      </view>
+    </view>
+
+    <view class="button-group">
+      <button class="primary-btn" bindtap="rewriteContent" loading="{{isRewriting}}" disabled="{{isRewriting || !video.content}}">
+        {{isRewriting ? '改写中...' : '开始AI改写'}}
+      </button>
+      <button class="secondary-btn" bindtap="copyContent" disabled="{{!rewrittenContent}}">
+        复制内容
+      </button>
+    </view>
+  </block>
+  <view wx:else class="error-message">
+    <text>视频数据加载失败，请返回重试</text>
+  </view>
+</view> 

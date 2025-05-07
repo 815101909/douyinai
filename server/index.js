@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const { rewriteContentWithDeepseek } = require('./deepseek_api');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -111,12 +112,38 @@ app.post('/api/video-content', async (req, res) => {
       }
     });
     
+    console.log('Video content API response:', JSON.stringify(response.data, null, 2));
+    
     if (response.data && response.data.code === 0) {
-      return res.json({ 
-        success: true, 
-        content: response.data.data.output
-      });
+      try {
+        // Parse the outer JSON string in data
+        const parsedData = JSON.parse(response.data.data);
+        
+        // The output might be a string or already an object
+        let content;
+        try {
+          content = JSON.parse(parsedData.output);
+        } catch (e) {
+          // If parsing fails, use the output string directly
+          content = parsedData.output;
+        }
+        
+        return res.json({ 
+          success: true, 
+          content: content
+        });
+      } catch (parseError) {
+        console.error('Error parsing video content:', parseError);
+        console.error('Raw data:', response.data.data);
+        return res.status(500).json({ 
+          success: false, 
+          message: '解析视频内容失败',
+          error: parseError.message,
+          rawData: response.data.data
+        });
+      }
     } else {
+      console.error('Coze API error:', response.data);
       return res.status(response.status || 500).json({ 
         success: false, 
         message: '获取视频内容失败',
@@ -125,6 +152,71 @@ app.post('/api/video-content', async (req, res) => {
     }
   } catch (error) {
     console.error('Error fetching video content:', error);
+    return res.status(500).json({ 
+      success: false, 
+      message: '服务器错误，请稍后再试',
+      error: error.message 
+    });
+  }
+});
+
+// API endpoint to rewrite content using DeepSeek API
+app.post('/api/rewrite-content', async (req, res) => {
+  try {
+    const { content, style, length, stylePrompt, lengthPrompt } = req.body;
+    
+    if (!content) {
+      return res.status(400).json({ success: false, message: '内容不能为空' });
+    }
+    
+    console.log(`Rewriting content with style: ${style}, length: ${length}`);
+    
+    try {
+      // 使用DeepSeek API进行内容改写
+      const rewrittenContent = await rewriteContentWithDeepseek(
+        content,
+        stylePrompt || '轻松、休闲的风格',
+        lengthPrompt || '适中长度，大约100-200字'
+      );
+      
+      return res.json({ 
+        success: true, 
+        content: rewrittenContent
+      });
+    } catch (deepseekError) {
+      console.error('DeepSeek API error:', deepseekError);
+      
+      // 备用方案：如果DeepSeek API失败，则使用原有的Coze API
+      console.log('Falling back to Coze API for content rewriting...');
+      
+      const cozeResponse = await axios.post('https://api.coze.cn/v1/workflow/run', {
+        parameters: {
+          content: content
+        },
+        workflow_id: "7501577805248036905",
+        app_id: "7501292376427282444"
+      }, {
+        headers: {
+          'Authorization': `Bearer ${process.env.COZE_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (cozeResponse.data && cozeResponse.data.code === 0) {
+        return res.json({ 
+          success: true, 
+          content: cozeResponse.data.data.output
+        });
+      } else {
+        return res.status(500).json({ 
+          success: false, 
+          message: '改写内容失败',
+          error: cozeResponse.data
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error rewriting content:', error);
     return res.status(500).json({ 
       success: false, 
       message: '服务器错误，请稍后再试',

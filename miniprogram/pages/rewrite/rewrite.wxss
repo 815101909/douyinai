@@ -1,0 +1,162 @@
+/* pages/rewrite/rewrite.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.video-info {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  gap: 20rpx;
+}
+
+.video-cover {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+}
+
+.video-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.video-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.video-stats {
+  display: flex;
+  gap: 20rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.content-section, .options-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.content-box {
+  padding: 20rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.content-box.original {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.content-box.rewritten {
+  background: #e8f4ff;
+  color: #333;
+}
+
+/* 选项相关样式 */
+.option-group {
+  margin-bottom: 20rpx;
+}
+
+.option-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.option-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.option-item {
+  padding: 10rpx 24rpx;
+  border-radius: 100rpx;
+  font-size: 24rpx;
+  background: #f5f5f5;
+  color: #666;
+  border: 2rpx solid transparent;
+}
+
+.option-item.selected {
+  background: #ffe8ec;
+  color: #ff2c55;
+  border-color: #ff2c55;
+  font-weight: 500;
+}
+
+.button-group {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+  padding: 0 20rpx;
+}
+
+.primary-btn {
+  flex: 1;
+  background: #ff2c55;
+  color: #fff;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  max-width: 65%; /* 设置最大宽度 */
+  margin: 0 auto; /* 居中显示 */
+}
+
+.primary-btn[disabled] {
+  background: #ffb3c1;
+  color: #fff;
+}
+
+.secondary-btn {
+  flex: 1;
+  background: #fff;
+  color: #ff2c55;
+  border: 2rpx solid #ff2c55;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+}
+
+.secondary-btn[disabled] {
+  color: #ffb3c1;
+  border-color: #ffb3c1;
+}
+
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.placeholder {
+  color: #999;
+  font-style: italic;
+} 

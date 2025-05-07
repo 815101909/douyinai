@@ -3,5 +3,5 @@
 请将SVG图标转换为PNG格式：
 1. video.svg → video.png 和 video_selected.png（选中状态）
 2. history.svg → history.png 和 history_selected.png（选中状态）
-
+ 
 可以使用在线工具转换或者使用图像编辑软件导出PNG格式。 
