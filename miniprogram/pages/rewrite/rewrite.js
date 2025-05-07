@@ -208,5 +208,48 @@ Page({
         })
       }
     })
+  },
+
+  // 保存到历史记录
+  saveToHistory() {
+    if (!this.data.rewrittenContent || !this.data.video) {
+      wx.showToast({
+        title: '请先改写内容',
+        icon: 'none',
+        duration: 1500
+      })
+      return
+    }
+
+    // 创建历史记录对象
+    const historyItem = {
+      id: Date.now().toString(), // 使用时间戳作为ID
+      videoId: this.data.video.id,
+      videoTitle: this.data.video.title,
+      originalContent: this.data.video.content,
+      rewrittenContent: this.data.rewrittenContent,
+      coverUrl: this.data.video.coverUrl,
+      styleType: this.data.contentStyle,
+      lengthType: this.data.contentLength,
+      createTime: new Date().getTime()
+    }
+
+    // 获取现有的历史记录
+    const historyList = wx.getStorageSync('rewriteHistory') || []
+    
+    // 添加新记录到数组开头（最新的记录显示在前面）
+    historyList.unshift(historyItem)
+    
+    // 限制历史记录数量，最多保存50条
+    const limitedHistoryList = historyList.slice(0, 50)
+    
+    // 保存到本地存储
+    wx.setStorageSync('rewriteHistory', limitedHistoryList)
+    
+    wx.showToast({
+      title: '已保存到历史记录',
+      icon: 'success',
+      duration: 1500
+    })
   }
 }) 

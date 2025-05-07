@@ -58,6 +58,9 @@
       <button class="secondary-btn" bindtap="copyContent" disabled="{{!rewrittenContent}}">
         复制内容
       </button>
+      <button class="secondary-btn" bindtap="saveToHistory" disabled="{{!rewrittenContent}}">
+        保存历史
+      </button>
     </view>
   </block>
   <view wx:else class="error-message">

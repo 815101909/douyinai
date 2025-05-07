@@ -1,55 +1,96 @@
 // history.js
 Page({
   data: {
-    historyItems: [
-      {
-        id: 1,
-        title: '告别复杂健身！5个懒人居家运动秘籍，日投10分钟，30天塑造理想体态',
-        time: '今天 12:30',
-        description: '懒人变身运动达人的秘密来啦！今天为你带来5个零基础、零器械的居家训练动作，每天只占用你10分钟，一个月后绝对让你惊艳自己！',
-        likes: '25.6万',
-        views: '186.2万',
-        coverUrl: 'https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?auto=compress&cs=tinysrgb&w=600&h=900'
-      },
-      {
-        id: 2,
-        title: '厨房空间翻倍！7个收纳妙招让小厨房变身收纳天堂',
-        time: '昨天 18:15',
-        description: '小厨房也能有大容量！这7个超实用收纳技巧让你的厨房空间立刻扩大一倍，再也不用担心东西放不下了！每个技巧都经过实测，成本不到50元就能搞定！',
-        likes: '13.2万',
-        views: '96.5万',
-        coverUrl: 'https://images.pexels.com/photos/5824877/pexels-photo-5824877.jpeg?auto=compress&cs=tinysrgb&w=600&h=900'
-      },
-      {
-        id: 3,
-        title: '手机摄影进阶秘诀：3步让你的照片媲美专业相机，朋友圈点赞999+',
-        time: '前天 09:45',
-        description: '不用花钱买昂贵设备，用这3个简单技巧，立刻提升你的手机摄影水平！第一招构图法则让照片更专业，第二招光线运用创造氛围感，第三招后期调色让照片独具风格。',
-        likes: '35.8万',
-        views: '212.3万',
-        coverUrl: 'https://images.pexels.com/photos/3328102/pexels-photo-3328102.jpeg?auto=compress&cs=tinysrgb&w=600&h=900'
-      },
-      {
-        id: 4,
-        title: '一天学会Excel高级函数，办公效率提升200%！',
-        time: '5月15日',
-        description: '这5个Excel函数让你从职场小白变身数据分析高手！VLOOKUP让数据查询不再困难，SUMIFS让条件汇总更精准，IFERROR让错误处理更优雅，透视表让数据展示更直观！',
-        likes: '18.7万',
-        views: '127.5万',
-        coverUrl: 'https://images.pexels.com/photos/7235677/pexels-photo-7235677.jpeg?auto=compress&cs=tinysrgb&w=600&h=900'
-      }
-    ]
+    historyItems: []
   },
 
   onLoad: function () {
-    // 页面加载时执行
+    this.loadHistoryData()
+  },
+
+  onShow: function() {
+    // 每次页面显示时重新加载数据，确保数据是最新的
+    this.loadHistoryData()
+  },
+
+  // 加载历史数据
+  loadHistoryData: function() {
+    // 从本地存储获取历史记录
+    const historyList = wx.getStorageSync('rewriteHistory') || []
+    
+    // 格式化数据以适应UI展示
+    const formattedHistoryItems = historyList.map(item => {
+      return {
+        id: item.id,
+        title: item.videoTitle,
+        time: this.formatTime(item.createTime),
+        description: item.rewrittenContent,
+        originalContent: item.originalContent,
+        coverUrl: item.coverUrl,
+        styleType: this.getStyleName(item.styleType),
+        lengthType: this.getLengthName(item.lengthType),
+        videoId: item.videoId
+      }
+    })
+    
+    this.setData({
+      historyItems: formattedHistoryItems
+    })
+  },
+
+  // 格式化时间
+  formatTime: function(timestamp) {
+    const now = new Date()
+    const date = new Date(timestamp)
+    const diffDays = Math.floor((now - date) / (24 * 60 * 60 * 1000))
+    
+    if (diffDays === 0) {
+      // 今天
+      const hours = date.getHours().toString().padStart(2, '0')
+      const minutes = date.getMinutes().toString().padStart(2, '0')
+      return `今天 ${hours}:${minutes}`
+    } else if (diffDays === 1) {
+      // 昨天
+      const hours = date.getHours().toString().padStart(2, '0')
+      const minutes = date.getMinutes().toString().padStart(2, '0')
+      return `昨天 ${hours}:${minutes}`
+    } else if (diffDays < 7) {
+      // 本周
+      return `${diffDays}天前`
+    } else {
+      // 更早
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const day = date.getDate().toString().padStart(2, '0')
+      return `${month}月${day}日`
+    }
+  },
+
+  // 获取风格名称
+  getStyleName: function(styleType) {
+    const styleMap = {
+      'formal': '正式',
+      'casual': '休闲',
+      'humorous': '幽默',
+      'professional': '专业'
+    }
+    return styleMap[styleType] || '休闲'
+  },
+
+  // 获取长度名称
+  getLengthName: function(lengthType) {
+    const lengthMap = {
+      'short': '简短',
+      'medium': '适中',
+      'long': '详细'
+    }
+    return lengthMap[lengthType] || '适中'
   },
 
   // 复制内容
   copyContent: function (e) {
     const item = e.currentTarget.dataset.item;
     wx.setClipboardData({
-      data: item.title + '\n' + item.description,
+      data: item.description,
       success: function () {
         wx.showToast({
           title: '复制成功',
@@ -63,11 +104,20 @@ Page({
   // 查看详情
   viewDetail: function (e) {
     const item = e.currentTarget.dataset.item;
-    // 这里可以跳转到详情页，暂时用提示代替
-    wx.showToast({
-      title: '查看详情：' + item.id,
-      icon: 'none',
-      duration: 2000
+    wx.navigateTo({
+      url: '../history-detail/history-detail',
+      success: (result) => {
+        // 传递历史记录数据给详情页面
+        result.eventChannel.emit('acceptDataFromOpenerPage', { history: item });
+      },
+      fail: (err) => {
+        console.error('页面跳转失败:', err);
+        wx.showToast({
+          title: '页面跳转失败',
+          icon: 'none',
+          duration: 1500
+        });
+      }
     });
   },
 
