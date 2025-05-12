@@ -30,6 +30,7 @@
    ```env
    COZE_TOKEN=your_coze_api_token_here
    ```
+   其中文案提取用到的api链接:https://mediahelper.xyz/
 
 4. 启动服务器:
    ```bash
